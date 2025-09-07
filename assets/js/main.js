@@ -1,26 +1,25 @@
 function criaCalculadora() {
   return {
-    display: document.querySelector('.display'), // pega a class display da tabela 
+    display: document.querySelector('.display'), 
 
-    inicia() { // método inicial
-      this.cliqueBotoes();       //  "this" é a calculadora
+    inicia() { 
+      this.cliqueBotoes();      
       this.pressionaBackSpace(); 
       this.pressionaEnter();     
     },
 
-    pressionaBackSpace() { // é a funcão que foi chamada acima
+    pressionaBackSpace() { 
       this.display.addEventListener('keydown', e => {
-        // Arrow function mantém "this" como calculadora
         if (e.keyCode === 8) { 
-          e.preventDefault();   // evita apagar só 1 caractere
-          this.clearDisplay();  // chama método do objeto -> limpa tudo
+          e.preventDefault();   
+          this.clearDisplay();  
         }
       });
     },
 
-    pressionaEnter() { // é a funcão que foi chamada primeira de todas
+    pressionaEnter() { 
       this.display.addEventListener('keyup', e => {
-        // Arrow function  mantém "this" como calculadora
+        
         if (e.keyCode === 13) { 
           this.realizaConta();  
         }
@@ -28,7 +27,7 @@ function criaCalculadora() {
     },
 
 
-    realizaConta() { // é a funcão que foi chamada acima
+    realizaConta() { 
       let conta = this.display.value; 
 
       try {
@@ -47,15 +46,13 @@ function criaCalculadora() {
     },
 
     clearDisplay() {
-      this.display.value = ''; // limpa o input
+      this.display.value = ''; 
     },
 
     apagaUm() {
       this.display.value = this.display.value.slice(0, -1); 
     },
 
-
-// usa this pq o metodo do objeto ja existia no escopo global por isso o arrow function tbm    
     cliqueBotoes() {
       document.addEventListener('click', e => {
         const el = e.target;
@@ -79,11 +76,6 @@ function criaCalculadora() {
         this.display.focus(); 
       });
     },
-
-
-
-
-
     btnParaDisplay(valor) {
       this.display.value += valor; 
     }
